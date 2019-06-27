@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+<div class="impulse-wrapper">
+    <div class="imp-landing">
+        <!-- Header -->
+        <header class="imp-landing-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-lg-6">
+                        <!-- Logo -->
+                        <a href="javascript:void(0);" class="imp-logo pull-left"><img src="images/logo.png" alt="Impulse"></a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-lg-6">
+                        <form asp-controller="User" asp-action="Login" method="get">
+                            <!-- Sign in -->
+                            <input type="submit" class="imp-outline-button imp-button-small pull-right" value="Sign in" />
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Content -->
+        <section class="imp-landing-box">
+            <div class="img-landing-act-align">
+                <h4>Enroll In As</h4>
+                <span class="left-100">
+
+                    <input type="submit" class="imp-outline-button imp-button-medium" value="Corporate" id="btnCorprate" onclick="CorporateClick()" />
+
+                    <input type="submit" class="imp-outline-button imp-button-medium" value="Vendor" id="btnVendor" onclick="VendorClick()" />
+                    <input type="submit" class="imp-outline-button imp-button-medium" value="ICitizen" id="btnVendor" onclick="CitizenClick()" />
+
+
+                </span>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="imp-ladning-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-lg-6 imp-foot-left">
+                        <p>&copy; letsimpulse 2018. All rights reserved.</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-lg-6 imp-foot-right">
+                        <ul class="imp-social imp-social-white">
+                            <li><a href="#" target="_blank" class="imp-fb"></a></li>
+                            <li><a href="#" target="_blank" class="imp-ig"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/js/MainPage.js"></script>

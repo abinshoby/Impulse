@@ -1,0 +1,285 @@
+//General
+body {
+    @extend %font1;
+    color: #000000;
+}
+
+a {
+    &:focus,&:hover{
+        text-decoration: none!important;
+        outline: none !important;
+    }
+}
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.container {
+    max-width: 1250px;
+    width: 100%;
+}
+
+.left-100{
+    @extend %float-full;
+}
+
+strong{
+    font-weight: 700;
+}
+
+// Btn
+.imp-outline-button {
+    display: inline-block;
+    vertical-align: top;
+    color: #FFF;
+    background-color: transparent;
+    border: 1px solid #FFF;
+    margin: 0;
+    outline: none;
+    @extend %transition;
+    &:hover{
+        background-color: #555;
+        border-color: #555;
+    }
+    &+.imp-outline-button{
+        margin-left: 10px;
+    }
+    &.imp-button-small {
+        font-size: 1.3rem;
+        line-height: normal;
+        padding: 5px 15px;
+        @include border-radius(15px);
+    }
+    &.imp-button-medium {
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 5px 15px;
+        @include border-radius(20px);
+    }
+    &.imp-button-cls{
+        color: var(--primary);
+        border-color: var(--primary);
+        padding-right: 35px !important;
+        position: relative;
+        &:after{
+            content: "";
+            background-image: url(../images/close.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        &:hover{
+            color: #FFF;
+            border-color: #555;
+            &:after{
+                filter: grayscale(1) brightness(100);
+            }
+        }
+    }
+}
+.imp-solid-button {
+    display: inline-block;
+    vertical-align: top;
+    color: #FFF;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    margin: 0;
+    outline: none;
+    @extend %transition;
+    position: relative;
+    &:hover{
+        background-color: #555;
+        border-color: #555;
+    }
+    &.imp-button-small {
+        font-size: 1.3rem;
+        line-height: normal;
+        padding: 5px 15px;
+        @include border-radius(15px);
+    }
+    &.imp-button-medium {
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 5px 15px;
+        @include border-radius(20px);
+    }
+    &.imp-button-arr{
+        padding-right: 35px !important;
+        &:after{
+            content: "";
+            @extend %sprite;
+            background-position: -21px -104px;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+   
+}
+.imp-social{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li{
+        display: inline-block;
+        vertical-align: top;
+        a{
+            display: inline-block;
+            vertical-align: top;
+            @extend %sprite;
+            outline: none;
+            @extend %transition;
+            &:hover{
+                opacity: 0.7;
+            }
+        }
+    }
+    &.imp-social-white{
+        li{
+            margin-left: 7px;
+        }
+        a{
+            width: 20px;
+            height: 20px;
+            &.imp-fb{
+                background-position: -17px -14px;
+            }
+            &.imp-ig{
+                background-position: -80px -13px;
+            }
+        }
+    }
+    &.imp-social-color{
+        li{
+            margin: 0 3px;
+        }
+        a{
+            width: 35px;
+            height: 35px;
+            &.imp-fb{
+                background-position: -10px -52px;
+            }
+            &.imp-gp{
+                background-position: -73px -51px;
+            }
+        }
+    }
+}
+.imp-view-all {
+    display: inline-block;
+    color: var(--primary-mid);
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding-right: 18px;
+    background-position: right 4px center;
+    background-repeat: no-repeat;
+    background-image: url(../images/arr-rgt.png);
+}
+.img-mt25{
+    margin-top: 25px;
+}
+.imp-mt50 {
+    margin-top: 50px;
+}
+.imp-p0{
+    padding: 0;
+}
+.imp-pl0{
+    padding-left: 0;
+}
+.imp-pr0{
+    padding-right: 0;
+}
+.imp-ml20{
+    margin-left: 20px;
+}
+.imp-radio{
+    .control {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 5px;
+        padding-top: 3px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 400;
+    }
+        .control input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+        }
+    .control_indicator {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background: #e6e6e6;
+        border: 0px solid #000000;
+    }
+    .control-radio .control_indicator {
+        border-radius: 29%;
+    }
+    
+    .control:hover input ~ .control_indicator,
+    .control input:focus ~ .control_indicator {
+        background: #cccccc;
+    }
+    
+    .control input:checked ~ .control_indicator {
+        background: #fac95f;
+    }
+    .control:hover input:not([disabled]):checked ~ .control_indicator,
+    .control input:checked:focus ~ .control_indicator {
+        background: #555;
+    }
+    .control input:disabled ~ .control_indicator {
+        background: #e6e6e6;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    .control_indicator:after {
+        box-sizing: unset;
+        content: '';
+        position: absolute;
+        display: none;
+    }
+    .control input:checked ~ .control_indicator:after {
+        display: block;
+    }
+    .control-radio .control_indicator:after {
+        left: 7px;
+        top: 7px;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background: #ffffff;
+    }
+    .control-radio input:disabled ~ .control_indicator:after {
+        background: #7b7b7b;
+    }
+}
+.imp-mt25{
+    margin-top: 25px;
+}
+.imp-radio .control {
+    display: inline-block;
+    padding-top: 0;
+    margin-right: 15px;
+    margin-top: 5px;
+}

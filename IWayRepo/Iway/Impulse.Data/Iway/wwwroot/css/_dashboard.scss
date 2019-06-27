@@ -1,0 +1,309 @@
+// Dashboard
+.imp-dashboard {
+    @extend %float-full;
+    min-height: 100vh;
+    background-color: #ececec;
+    position: relative;
+    background-image: url(../images/app-bg.png);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+.imp-dash-header {
+    @extend %float-full;
+    height: 200px;
+    background-color: var(--primary-mid);
+}
+.imp-dash-hleft{
+    text-align: center;
+    img{
+        filter: grayscale(1) brightness(100);
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+    }
+}
+.imp-search {
+    @extend %float-full;
+    margin-top: 20px;
+    position: relative;
+    input{
+        @extend %float-full;
+        border: 1px dotted rgba(255,255,255,0.04);
+        height: 35px;
+        background-color: transparent;
+        padding-left: 40px;
+        outline: none;
+        box-shadow: none;
+        color: #FFF;
+        background-image: url(../images/search.png);
+        background-position: left 10px center;
+        background-repeat: no-repeat;
+        background-size: 16px auto;
+        &::placeholder {
+            color: #FFF;
+            opacity: 0.7;
+        }
+    }
+}
+.imp-dash-hright{
+    ul{
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+        float: right;
+        li{
+            float: left;
+            a{
+                float: left;
+                position: relative;
+                &.imp-user{
+                    img{
+                        width: 48px;
+                        height: 48px;
+                        object-fit: contain;
+                        object-position: center center;
+                        display: inline-block;
+                        vertical-align: top;
+                        @include border-radius(50%);
+                    }
+                    i{
+                        position: absolute;
+                        background-position: -23px -185px;
+                        width: 16px;
+                        height: 16px;
+                        @extend %sprite;
+                        background-color: rgba(0,0,0,0.5);
+                        bottom: 0;
+                        right: 0;
+                        @include border-radius(50%);
+                    }
+                }
+                &.imp-notifications{
+                    width: 30px;
+                    height: 30px;
+                    margin: 9px 15px 0 0;
+                    &.imp-unread{
+                        &:after{
+                            width: 8px;
+                            height: 8px;
+                            content: "";
+                            @include border-radius(50%);
+                            position: absolute;
+                            right: 0;
+                            top:0;
+                            background-color: var(--idle);
+                        }
+                    }
+                    &:before{
+                        content: "";
+                        @extend %sprite;
+                        position: absolute;
+                        width: 21px;
+                        height: 21px;
+                        background-position: -51px -217px;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+.imp-dash-content {
+    @extend %float-full;
+    margin-top: -65px;
+    margin-bottom: 50px;
+    &>.container{
+        &>.row{
+            display: flex;
+        }
+    }
+}
+.imp-dash-cleft{
+    text-align: center;
+    .imp-menu{
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        max-width: 214px;
+        padding: 0;
+        list-style: none;
+        li{
+            float: left;
+            width: calc(50% - 14px);
+            margin: 7px 7px 14px 7px;
+            a{
+                @extend %float-full;
+                color: #bfbfbf;
+                background-color: #FFF;
+                @include border-radius(7px);
+                padding: 10px;
+                font-size: 1.2rem;
+                line-height: normal;
+                -webkit-box-shadow: 3px 4px 6px 0px rgba(0,0,0,0.1);
+                box-shadow: 3px 4px 6px 0px rgba(0,0,0,0.1);
+                @extend %transition;
+                &:hover{
+                    -webkit-box-shadow: 3px 4px 8px 0px rgba(0,0,0,0.4);
+                    box-shadow: 3px 4px 8px 0px rgba(0,0,0,0.4);
+                }
+                img{
+                    width: 100%;
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 56px;
+                    object-fit: scale-down;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+.imp-dash-block {
+    @extend %float-full;
+    background-color: #FFF;
+    padding: 15px;
+    @include border-radius(8px);
+    margin-top: -40px;
+    min-height: 100%;
+    h5{
+        @extend %float-full;
+        color: #d8d8d8;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 20px;
+    }
+}
+.imp-dash-block-head {
+    @extend %float-full;
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    h4{
+        float: left;
+        font-size: 1.7rem;
+        margin: 6px 0;
+        font-weight: 600;
+    }
+}
+.imp-dash-block-left{
+    padding-left: 5px;
+}
+.imp-dash-block-right{
+    padding-right: 5px;
+}
+.imp-event-card {
+    @extend %float-full;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 3px 7px 1px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 7px 1px rgba(0,0,0,0.1);
+    padding: 15px 195px 15px 15px;
+    position: relative;
+    cursor: pointer;
+    @extend %transition;
+    &:hover{
+        box-shadow: 0px 3px 7px 1px rgba(0,0,0,0.25);
+    }
+    h4{
+        @extend %float-full;
+        margin: 0px 0 5px;
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 1.7rem;
+    }
+    p{
+        @extend %float-full;
+        color: #666666;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+    .label{
+        @include border-radius(15px);
+        position: absolute;
+        right: 14px;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 15px;
+        padding: .2em .8em .2em;
+        min-width: 95px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    strong{
+        position: absolute;
+        right: 120px;
+        font-size: 1.1rem;
+        line-height: 15px;
+        height: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        font-weight: 600;
+    }
+}
+.imp-calendar {
+    margin-bottom: 30px;
+}
+.imp-gallery{
+    ul{
+        @extend %float-full;
+        padding: 0;
+        list-style: none;
+        margin: 0;
+        li{
+            float: left;
+            width: 25%;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            img{
+                cursor: pointer;
+                @extend %transition;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+.imp-date-card {
+    @extend %float-full;
+    padding-left: 60px;
+    position: relative;
+    margin-bottom: 20px;
+    min-height: 50px;
+    cursor: pointer;
+    .imp-date{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 45px;
+        height: 46px;
+        background-position: -38px -260px;
+        padding: 16px 0 0 0;
+        text-align: center;
+        font-size: 2.3rem;
+        line-height: 25px;
+        color: #6d6d6d;
+        @extend %sprite;
+    }
+    h4{
+        font-size: 1.6rem;
+        line-height: normal;
+        margin: 0 0 1px 0;
+        font-weight: 600;
+        @extend %float-full;
+    }
+    p{
+        @extend %float-full;
+        color: #868686;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+}

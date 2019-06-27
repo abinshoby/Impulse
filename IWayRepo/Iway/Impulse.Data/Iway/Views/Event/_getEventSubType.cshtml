@@ -1,0 +1,36 @@
+﻿@model Impulse.Model.EventViewModelPost
+<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>
+<link href="~/lib/dist/fastselect.min.css" rel="stylesheet" />
+<script src="~/lib/dist/fastselect.standalone.js"></script>
+
+<style>
+
+
+    .fstElement {
+        font-size: 1.2em;
+    }
+
+    .fstToggleBtn {
+        min-width: 16.5em;
+    }
+
+    .submitBtn {
+        display: none;
+    }
+
+    .fstMultipleMode {
+        display: block;
+    }
+
+        .fstMultipleMode .fstControls {
+            width: 100%;
+        }
+</style>
+<label>Speicify your event</label>
+<div style="font-size:8px">
+    <select asp-for="EventSubTypeList" asp-items="@Model.ddlEventSubType" multiple class="form-control multipleSelect"></select>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('.multipleSelect').fastselect();
+</script>

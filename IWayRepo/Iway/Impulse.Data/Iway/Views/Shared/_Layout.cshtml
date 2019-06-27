@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Impulse</title>
+    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- CSS -->
+    <link href="~/css/style.min.css" rel="stylesheet">
+    <link href="~/css/ant.css" rel="stylesheet" />
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/css/style.css" rel="stylesheet" />
+    <environment include="Development">
+        <link href="~/css/style.min.css" rel="stylesheet">
+    </environment>
+</head>
+
+<body>
+
+    <div class="impulse-wrapper">
+        <div class="imp-dashboard">
+            <header class="imp-dash-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-lg-3 imp-dash-hleft">
+                            <img src="~/Images/logo.png" alt="Impulse" />
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-lg-7 imp-dash-hmid">
+                            <span class="imp-search"><input type="search" placeholder="Search" /></span>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-lg-2 imp-dash-hright">
+                            <ul>
+                                <li><a href="javascript:void(0);" class="imp-notifications imp-unread"></a></li>
+                                <li><a href="javascript:void(0);" id="profTest" class="imp-user"><img src="~/Images/avatar.png" alt="Profile" /><i></i></a></li>
+                            </ul>
+                        </div>
+                        <div style="position: absolute; top: 0px; left: 0px; width: 100%;display:none" id="ProDiv">
+                            <div>
+                                <div class="ant-dropdown ant-dropdown-placement-bottomLeft" style="left: 1236.48px; top: 72px;">
+                                    <ul class="ant-dropdown-menu dropdown-li ant-dropdown-menu-light ant-dropdown-menu-root ant-dropdown-menu-vertical" role="menu">
+                                        <li class="ant-dropdown-menu-item" role="menuitem"><span><a href="~/User/Profile">Profile</a></span></li>
+                                        <li class="ant-dropdown-menu-item ant-dropdown-menu-item-disabled" role="menuitem" aria-disabled="true"><span>Settings</span></li>
+                                        <li class="ant-dropdown-menu-item" role="menuitem"><span><a href="~/User/logout">Logout</a></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <partial name="_ProfileDetails" />
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="loading-image" style="display:none">
+        <div>
+            <h7>Please wait...</h7>
+        </div>
+    </div>
+
+    <environment exclude="Development">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        @* <script src="~/js/bootstrap.min.js"></script>*@
+    </environment>
+    <script>
+        $(document).ready(function () {
+            $("#profTest").click(function () {
+                $("#ProDiv").toggle();
+            });
+        });
+    </script>
+    <script>
+        $(document)
+            .ajaxStart(function () {
+                $('#loading-image').show();
+            })
+            .ajaxStop(function () {
+                $('#loading-image').hide();
+            });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

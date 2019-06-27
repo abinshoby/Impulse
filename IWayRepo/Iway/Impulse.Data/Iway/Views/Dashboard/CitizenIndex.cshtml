@@ -1,0 +1,87 @@
+﻿@model Impulse.Model.User
+
+<div class="impulse-wrapper">
+    <div class="imp-dashboard">
+
+        <section class="imp-dash-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-lg-3 imp-dash-cleft">
+                        <ul class="imp-menu">
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/sports.png" alt="Sports" /><br>Sports</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/checkup.png" alt="Check-ups" /><br>Check-ups</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/diet.png" alt="Diet" /><br>Diet</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/football.png" alt="Football" /><br>Football</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/cycling.png" alt="Cycling" /><br>Cycling</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/treckking.png" alt="Trekking" /><br>Trekking</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/treckking.png" alt="Tennis" /><br>Tennis</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/cricket.png" alt="Cricket" /><br>Cricket</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/grounds.png" alt="Grounds" /><br>Grounds</a></li>
+                            <li><a href="javascript:void(0);"><img src="~/images/menu-icons/yoga.png" alt="Yoga" /><br>Yoga</a></li>
+                        </ul>
+                        <div class="left-100">
+                            <a href="javascript:void(0);" class="imp-view-all">View All</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-lg-9 imp-dash-cright">
+                        <div class="imp-dash-block">
+                            <div class="imp-dash-block-head">
+                                <h4>Dashboard</h4>
+                                <input type="hidden" id="hdnUserId" value="@Model.UserId" />
+
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-lg-8 imp-dash-block-left">
+                                <div class="left-100" id="ProfileCompletionDiv" style="display:none">
+                                    <span>Please complete your profile </span>
+                                    <div id="overlay"><img src="~/images/spinner.gif" alt="Be patient..." style="display:none" /></div>
+
+                                </div>
+
+                                <div class="left-100" id="griddiv">
+                                    <div id="overlay"><img src="~/images/spinner.gif" alt="Be patient..." style="display:none" /></div>
+
+                                </div>
+                                <div class="left-100 img-mt25">
+                                    <h5>NEWS AND UPDATES</h5>
+                                    <div class="imp-date-card">
+                                        <span class="imp-date">18</span>
+                                        <h4>Inter IT Park Mini Olympics 2018</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                    </div>
+                                    <div class="imp-date-card">
+                                        <span class="imp-date">19</span>
+                                        <h4>Inter IT Park Mini Olympics 2019</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-lg-4 imp-dash-block-right">
+
+                                <div class="left-100">
+                                    <h5>EVENT CALENDAR</h5>
+                                    <div class="left-100 imp-calendar">
+                                        <img src="~/images/calendar.png" class="Calendar" />
+                                    </div>
+                                </div>
+                                <div class="left-100 imp-gallery">
+                                    <h5>GALLERY<a href="javascript:void(0);" class="imp-view-all pull-right">View All</a></h5>
+                                    <ul>
+                                        <li><img src="~/Images/gallery/gal1.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal2.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal1.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal2.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal2.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal1.jpg" /></li>
+                                        <li><img src="~/Images/gallery/gal2.jpg" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/js/CitizenDashboard.js"></script>

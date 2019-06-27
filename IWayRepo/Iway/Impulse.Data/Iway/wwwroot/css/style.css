@@ -1,0 +1,1159 @@
+
+    .left-100 span {
+        float: left;
+        width: 100%;
+    }
+
+#overlay img {
+    display: block;
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#overlayProfile img {
+    display: block;
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#loading-image {
+    position: Fixed;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #666;
+    background-image: url('../images/spinner.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10000000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+/* 
+Project : Impulse
+Author : Deepu Das
+Website : www.deepudas.com
+Date : 14 Oct, 2018
+*/
+.left-100, .imp-login, .imp-login-table, .imp-login-form, .imp-login-social label, .imp-login-footer p, .imp-landing, .imp-landing-box, .imp-ladning-footer, .imp-ladning-footer .imp-foot-left p, .imp-dashboard, .imp-dash-header, .imp-search, .imp-search input, .imp-dash-content, .imp-dash-cleft .imp-menu li a, .imp-dash-block, .imp-dash-block h5, .imp-dash-block-head, .imp-event-card, .imp-event-card h4, .imp-event-card p, .imp-event-details-card, .imp-event-details-card h4, .imp-event-details-card p, .imp-gallery ul, .imp-date-card, .imp-date-card h4, .imp-date-card p, .imp-request-unlisted, .imp-request-unlisted li {
+    float: left;
+    width: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.imp-outline-button, .imp-solid-button, .imp-social li a, .imp-login-btns a, .imp-dash-cleft .imp-menu li a, .imp-event-card, .imp-event-details-card, .imp-gallery ul li img {
+    -webkit-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+}
+
+    .imp-solid-button.imp-button-arr:after, .imp-social li a, .imp-login-btns .imp-solid-button:after, .imp-dash-hright ul li a.imp-user i, .imp-dash-hright ul li a.imp-notifications:before, .imp-date-card .imp-date {
+        background-image: url(../images/sprite.png);
+        background-repeat: no-repeat;
+    }
+
+:root {
+    --primary: #0770b5;
+    --primary-mid: #0665a3;
+    --primary-dark: #005389;
+    --idle: #fac95f;
+    --success: #2fc982;
+    --progress: #35b5da;
+    --text: #666666;
+}
+
+body {
+    color: #000000;
+}
+
+a:focus, a:hover {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.container {
+    max-width: 1250px;
+    width: 100%;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.imp-outline-button {
+    display: inline-block;
+    vertical-align: top;
+    color: #FFF;
+    background-color: transparent;
+    border: 1px solid #FFF;
+    margin: 0;
+    outline: none;
+}
+
+    .imp-outline-button:hover {
+        background-color: #555;
+        border-color: #555;
+    }
+
+    .imp-outline-button + .imp-outline-button {
+        margin-left: 10px;
+    }
+
+    .imp-outline-button.imp-button-small {
+        font-size: 1.3rem;
+        line-height: normal;
+        padding: 5px 15px;
+        border-radius: 15px;
+    }
+
+    .imp-outline-button.imp-button-medium {
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 5px 15px;
+        border-radius: 20px;
+    }
+
+    .imp-outline-button.imp-button-cls {
+        color: var(--primary);
+        border-color: var(--primary);
+        padding-right: 35px !important;
+        position: relative;
+    }
+
+        .imp-outline-button.imp-button-cls:after {
+            content: "";
+            background-image: url(../images/close.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .imp-outline-button.imp-button-cls:hover {
+            color: #FFF;
+            border-color: #555;
+        }
+
+            .imp-outline-button.imp-button-cls:hover:after {
+                -webkit-filter: grayscale(1) brightness(100);
+                filter: grayscale(1) brightness(100);
+            }
+
+.imp-solid-button {
+    display: inline-block;
+    vertical-align: top;
+    color: #FFF;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    margin: 0;
+    outline: none;
+    position: relative;
+}
+
+    .imp-solid-button:hover {
+        background-color: #555;
+        border-color: #555;
+    }
+
+    .imp-solid-button.imp-button-small {
+        font-size: 1.3rem;
+        line-height: normal;
+        padding: 5px 15px;
+        border-radius: 15px;
+    }
+
+    .imp-solid-button.imp-button-medium {
+        font-size: 1.5rem;
+        line-height: normal;
+        padding: 5px 15px;
+        border-radius: 20px;
+    }
+
+    .imp-solid-button.imp-button-arr {
+        padding-right: 35px !important;
+    }
+
+        .imp-solid-button.imp-button-arr:after {
+            content: "";
+            background-position: -21px -104px;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+.imp-social {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .imp-social li {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+        .imp-social li a {
+            display: inline-block;
+            vertical-align: top;
+            outline: none;
+        }
+
+            .imp-social li a:hover {
+                opacity: 0.7;
+            }
+
+    .imp-social.imp-social-white li {
+        margin-left: 7px;
+    }
+
+    .imp-social.imp-social-white a {
+        width: 20px;
+        height: 20px;
+    }
+
+        .imp-social.imp-social-white a.imp-fb {
+            background-position: -17px -14px;
+        }
+
+        .imp-social.imp-social-white a.imp-ig {
+            background-position: -80px -13px;
+        }
+
+    .imp-social.imp-social-color li {
+        margin: 0 3px;
+    }
+
+    .imp-social.imp-social-color a {
+        width: 35px;
+        height: 35px;
+    }
+
+        .imp-social.imp-social-color a.imp-fb {
+            background-position: -10px -52px;
+        }
+
+        .imp-social.imp-social-color a.imp-gp {
+            background-position: -73px -51px;
+        }
+
+.imp-view-all {
+    display: inline-block;
+    color: var(--primary-mid);
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding-right: 18px;
+    background-position: right 4px center;
+    background-repeat: no-repeat;
+    background-image: url(../images/arr-rgt.png);
+}
+
+.img-mt25 {
+    margin-top: 25px;
+}
+
+.imp-mt50 {
+    margin-top: 50px;
+}
+
+.imp-p0 {
+    padding: 0;
+}
+
+.imp-pl0 {
+    padding-left: 0;
+}
+
+.imp-pr0 {
+    padding-right: 0;
+}
+
+.imp-ml20 {
+    margin-left: 20px;
+}
+
+.imp-radio .control {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 5px;
+    padding-top: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+    .imp-radio .control input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+.imp-radio .control_indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #e6e6e6;
+    border: 0px solid #000000;
+}
+
+.imp-radio .control-radio .control_indicator {
+    border-radius: 29%;
+}
+
+.imp-radio .control:hover input ~ .control_indicator,
+.imp-radio .control input:focus ~ .control_indicator {
+    background: #cccccc;
+}
+
+.imp-radio .control input:checked ~ .control_indicator {
+    background: #fac95f;
+}
+
+.imp-radio .control:hover input:not([disabled]):checked ~ .control_indicator,
+.imp-radio .control input:checked:focus ~ .control_indicator {
+    background: #555;
+}
+
+.imp-radio .control input:disabled ~ .control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.imp-radio .control_indicator:after {
+    -webkit-box-sizing: unset;
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.imp-radio .control input:checked ~ .control_indicator:after {
+    display: block;
+}
+
+.imp-radio .control-radio .control_indicator:after {
+    left: 7px;
+    top: 7px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.imp-radio .control-radio input:disabled ~ .control_indicator:after {
+    background: #7b7b7b;
+}
+
+.imp-mt25 {
+    margin-top: 25px;
+}
+
+.imp-radio .control {
+    display: inline-block;
+    padding-top: 0;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.imp-login {
+    min-height: 100vh;
+    background-color: var(--primary-mid);
+    position: relative;
+    background-image: url(../images/app-bg.jpg);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+.imp-login-table {
+    height: 100vh;
+    padding: 30px 0;
+    display: table;
+}
+
+.imp-login-cell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+}
+
+    .imp-login-cell .container {
+        max-width: 991px;
+    }
+
+.imp-login-flex {
+    display: -ms-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+    .imp-login-flex .imp-login-box.imp-login-left {
+        background-color: var(--primary);
+        border-radius: 10px 0 0 10px;
+        position: relative;
+        width: 55%;
+    }
+
+    .imp-login-flex .imp-login-box.imp-login-right {
+        width: 45%;
+        background-color: #f4f4f4;
+        border-radius: 0 10px 10px 0;
+        text-align: center;
+        position: relative;
+    }
+
+        .imp-login-flex .imp-login-box.imp-login-right:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            right: 100%;
+            top: 0;
+            border-width: 464px 150px 0px 0;
+            border-style: solid;
+            border-color: transparent #f4f4f4 transparent transparent;
+        }
+
+.imp-login-vert-flex {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 100%;
+}
+
+    .imp-login-vert-flex .imp-login-box-v {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        height: 50%;
+        color: #FFF;
+    }
+
+        .imp-login-vert-flex .imp-login-box-v.imp-login-box-top {
+            padding: 35px 95px 15px 30px;
+        }
+
+            .imp-login-vert-flex .imp-login-box-v.imp-login-box-top h3 {
+                font-size: 2.3rem;
+                line-height: 2.7rem;
+                margin: 0 0 15px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .imp-login-vert-flex .imp-login-box-v.imp-login-box-top p {
+                font-size: 1.3rem;
+                line-height: normal;
+                margin: 0;
+                position: relative;
+                z-index: 2;
+            }
+
+        .imp-login-vert-flex .imp-login-box-v.imp-login-box-bottom {
+            background-color: #fff;
+            border-radius: 0 0 0 11px;
+        }
+
+    .imp-login-vert-flex .imp-login-box-bottom {
+        position: relative;
+    }
+
+        .imp-login-vert-flex .imp-login-box-bottom img {
+            position: absolute;
+            max-height: 390px;
+            top: 0;
+            margin-top: -100px;
+            z-index: 1;
+            left: 0;
+        }
+
+.imp-login-form-wrap {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 340px;
+    padding: 50px 0;
+}
+
+.imp-login-form {
+    margin-top: 40px;
+}
+
+    .imp-login-form > .left-100 {
+        margin-bottom: 15px;
+    }
+
+        .imp-login-form > .left-100.imp-login-social {
+            margin-bottom: 0;
+        }
+
+        .imp-login-form > .left-100 .form-control {
+            height: 40px;
+            text-align: left;
+        }
+
+.imp-login-btns {
+    margin-top: 10px;
+}
+
+    .imp-login-btns .imp-solid-button {
+        padding-right: 35px !important;
+    }
+
+        .imp-login-btns .imp-solid-button:after {
+            content: "";
+            background-position: -21px -104px;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+    .imp-login-btns a {
+        font-size: 1.1rem;
+        color: #5a5a5a;
+        margin: 7px 0;
+    }
+
+        .imp-login-btns a:hover {
+            color: var(--primary);
+        }
+
+.imp-login-social {
+    border-top: 1px solid #dedede;
+    margin-top: 10px;
+}
+
+    .imp-login-social label {
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: #5a5a5a;
+        margin: 13px 0;
+    }
+
+.imp-login-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+    .imp-login-footer .container {
+        max-width: 991px;
+    }
+
+    .imp-login-footer p {
+        margin: 0 0 15px 0;
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+.imp-landing {
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    position: relative;
+}
+
+    .imp-landing:after {
+        background-color: var(--primary);
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 35%;
+    }
+
+    .imp-landing:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        right: 35%;
+        top: 0;
+        border-width: calc(100vh - 100px) 380px 0px 0;
+        border-style: solid;
+        border-color: transparent var(--primary) transparent transparent;
+    }
+
+.imp-landing-header {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    top: 0;
+    padding: 20px 0;
+    z-index: 5;
+}
+
+.imp-landing-box {
+    height: calc(100vh - 130px);
+    position: relative;
+    z-index: 1;
+    padding: 20px 0 0;
+    margin-bottom: 30px;
+    background-image: url(../images/landing.png);
+    background-position: top 15px center;
+    background-repeat: no-repeat;
+    max-width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.imp-ladning-footer {
+    background-color: #e7e7e7;
+    padding: 32px 0;
+    position: relative;
+    z-index: 1;
+}
+
+    .imp-ladning-footer:after {
+        background-color: var(--primary-dark);
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: calc(35% - 100px);
+    }
+
+    .imp-ladning-footer:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        right: calc(35% - 100px);
+        top: 0;
+        border-width: 0 480px 100px 0;
+        border-style: solid;
+        border-color: transparent var(--primary-dark) transparent transparent;
+    }
+
+    .imp-ladning-footer .imp-foot-left {
+        position: relative;
+        z-index: 1;
+    }
+
+        .imp-ladning-footer .imp-foot-left p {
+            margin: 0;
+            color: #aaa;
+            font-size: 1.2rem;
+            padding: 10px 0;
+        }
+
+    .imp-ladning-footer .imp-foot-right {
+        position: relative;
+        z-index: 1;
+    }
+
+        .imp-ladning-footer .imp-foot-right .imp-social {
+            float: right;
+            margin: 8px 0;
+        }
+
+.img-landing-act-align {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    max-width: 1250px;
+    text-align: right;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 15px;
+}
+
+    .img-landing-act-align h4 {
+        color: #FFF;
+        float: right;
+        width: 100%;
+        max-width: 210px;
+        margin: 0 0 15px 0;
+        font-size: 2rem;
+        line-height: normal;
+        text-align: left;
+    }
+
+.imp-dashboard {
+    min-height: 100vh;
+    background-color: #ececec;
+    position: relative;
+    background-image: url(../images/app-bg.png);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+.imp-dash-header {
+    height: 200px;
+    background-color: var(--primary-mid);
+}
+
+.imp-dash-hleft {
+    text-align: center;
+}
+
+    .imp-dash-hleft img {
+        -webkit-filter: grayscale(1) brightness(100);
+        filter: grayscale(1) brightness(100);
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 30px;
+    }
+
+.imp-search {
+    margin-top: 20px;
+    position: relative;
+}
+
+    .imp-search input {
+        border: 1px dotted rgba(255, 255, 255, 0.04);
+        height: 35px;
+        background-color: transparent;
+        padding-left: 40px;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #FFF;
+        background-image: url(../images/search.png);
+        background-position: left 10px center;
+        background-repeat: no-repeat;
+        background-size: 16px auto;
+    }
+
+        .imp-search input::-webkit-input-placeholder {
+            color: #FFF;
+            opacity: 0.7;
+        }
+
+        .imp-search input:-ms-input-placeholder {
+            color: #FFF;
+            opacity: 0.7;
+        }
+
+        .imp-search input::-ms-input-placeholder {
+            color: #FFF;
+            opacity: 0.7;
+        }
+
+        .imp-search input::placeholder {
+            color: #FFF;
+            opacity: 0.7;
+        }
+
+.imp-dash-hright ul {
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+    float: right;
+}
+
+    .imp-dash-hright ul li {
+        float: left;
+    }
+
+        .imp-dash-hright ul li a {
+            float: left;
+            position: relative;
+        }
+
+            .imp-dash-hright ul li a.imp-user img {
+                width: 48px;
+                height: 48px;
+                -o-object-fit: contain;
+                object-fit: contain;
+                -o-object-position: center center;
+                object-position: center center;
+                display: inline-block;
+                vertical-align: top;
+                border-radius: 50%;
+            }
+
+            .imp-dash-hright ul li a.imp-user i {
+                position: absolute;
+                background-position: -23px -185px;
+                width: 16px;
+                height: 16px;
+                background-color: rgba(0, 0, 0, 0.5);
+                bottom: 0;
+                right: 0;
+                border-radius: 50%;
+            }
+
+            .imp-dash-hright ul li a.imp-notifications {
+                width: 30px;
+                height: 30px;
+                margin: 9px 15px 0 0;
+            }
+
+                .imp-dash-hright ul li a.imp-notifications.imp-unread:after {
+                    width: 8px;
+                    height: 8px;
+                    content: "";
+                    border-radius: 50%;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    background-color: var(--idle);
+                }
+
+                .imp-dash-hright ul li a.imp-notifications:before {
+                    content: "";
+                    position: absolute;
+                    width: 21px;
+                    height: 21px;
+                    background-position: -51px -217px;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+
+.imp-dash-content {
+    margin-top: -65px;
+    margin-bottom: 50px;
+}
+
+    .imp-dash-content > .container > .row {
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+.imp-dash-cleft {
+    text-align: center;
+}
+
+    .imp-dash-cleft .imp-menu {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        max-width: 214px;
+        padding: 0;
+        list-style: none;
+    }
+
+        .imp-dash-cleft .imp-menu li {
+            float: left;
+            width: calc(50% - 14px);
+            margin: 7px 7px 14px 7px;
+        }
+
+            .imp-dash-cleft .imp-menu li a {
+                color: #bfbfbf;
+                background-color: #FFF;
+                border-radius: 7px;
+                padding: 10px;
+                font-size: 1.2rem;
+                line-height: normal;
+                -webkit-box-shadow: 3px 4px 6px 0px rgba(0, 0, 0, 0.1);
+                box-shadow: 3px 4px 6px 0px rgba(0, 0, 0, 0.1);
+            }
+
+                .imp-dash-cleft .imp-menu li a:hover {
+                    -webkit-box-shadow: 3px 4px 8px 0px rgba(0, 0, 0, 0.4);
+                    box-shadow: 3px 4px 8px 0px rgba(0, 0, 0, 0.4);
+                }
+
+                .imp-dash-cleft .imp-menu li a img {
+                    width: 100%;
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 56px;
+                    -o-object-fit: scale-down;
+                    object-fit: scale-down;
+                    -o-object-position: center;
+                    object-position: center;
+                }
+
+.imp-dash-block {
+    background-color: #FFF;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 55px;
+    min-height: 100%;
+    text-align: left;
+}
+
+    .imp-dash-block h5 {
+        color: #d8d8d8;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0 0 20px;
+    }
+
+.imp-dash-block-head {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+    .imp-dash-block-head h4 {
+        float: left;
+        font-size: 1.7rem;
+        margin: 6px 0;
+        font-weight: 600;
+    }
+
+.imp-dash-block-left {
+    padding-left: 5px;
+}
+
+.imp-dash-block-right {
+    padding-right: 5px;
+}
+
+.imp-event-card {
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.1);
+    padding: 15px 195px 15px 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .imp-event-card:hover {
+        -webkit-box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .imp-event-card h4 {
+        margin: 0px 0 5px;
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 1.7rem;
+    }
+
+    .imp-event-card p {
+        color: #666666;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .imp-event-card .label {
+        border-radius: 15px;
+        position: absolute;
+        right: 14px;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 15px;
+        padding: .2em .8em .2em;
+        min-width: 95px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .imp-event-card strong {
+        position: absolute;
+        right: 120px;
+        font-size: 1.1rem;
+        line-height: 15px;
+        height: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        font-weight: 600;
+    }
+
+.imp-event-details-card {
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.1);
+    padding: 15px 195px 15px 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .imp-event-details-card:hover {
+        -webkit-box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 3px 7px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .imp-event-details-card h4 {
+        margin: 0px 0 5px;
+        font-weight: 600;
+        color: var(--primary);
+        font-size: 1.7rem;
+    }
+
+    .imp-event-details-card p {
+        color: #666666;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .imp-event-details-card .label {
+        border-radius: 15px;
+        position: absolute;
+        right: 14px;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 15px;
+        padding: .2em .8em .2em;
+        min-width: 95px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .imp-event-details-card strong {
+        right: 120px;
+        font-size: 1.1rem;
+        line-height: 15px;
+        height: 15px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        font-weight: 600;
+    }
+
+.imp-calendar {
+    margin-bottom: 30px;
+}
+
+.imp-gallery ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+    .imp-gallery ul li {
+        float: left;
+        width: 25%;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+
+        .imp-gallery ul li img {
+            cursor: pointer;
+        }
+
+            .imp-gallery ul li img:hover {
+                opacity: 0.7;
+            }
+
+.imp-date-card {
+    padding-left: 60px;
+    position: relative;
+    margin-bottom: 20px;
+    min-height: 50px;
+    cursor: pointer;
+}
+
+    .imp-date-card .imp-date {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 45px;
+        height: 46px;
+        background-position: -38px -260px;
+        padding: 16px 0 0 0;
+        text-align: center;
+        font-size: 2.3rem;
+        line-height: 25px;
+        color: #6d6d6d;
+    }
+
+    .imp-date-card h4 {
+        font-size: 1.6rem;
+        line-height: normal;
+        margin: 0 0 1px 0;
+        font-weight: 600;
+    }
+
+    .imp-date-card p {
+        color: #868686;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+.imp-back {
+    float: left;
+    background-image: url(../images/back.png);
+    background-repeat: no-repeat;
+    margin-right: 8px;
+    height: 18px;
+    width: 30px;
+    cursor: pointer;
+    background-size: contain;
+}
+
+.imp-dash-block-head .label {
+    border-radius: 15px;
+    padding: .3em .6em .3em;
+    font-weight: 400;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    vertical-align: top;
+    margin-top: 0;
+    display: inline-block;
+}
+
+.imp-request-unlisted {
+    padding: 15px;
+    list-style: none;
+    margin: 20px 0 0 0;
+}
+
+    .imp-request-unlisted li {
+        margin-bottom: 15px;
+    }
+
+        .imp-request-unlisted li i {
+            float: left;
+            width: 40%;
+            padding-right: 20px;
+            font-style: normal;
+            color: #888888;
+            font-size: 1.3rem;
+        }
+
+        .imp-request-unlisted li strong {
+            float: left;
+            width: 60%;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+.imp-dash-block-full {
+    padding: 0 5px;
+}
+
+@media only screen and (max-height: 700px) {
+    .imp-landing-box {
+        background-size: contain;
+    }
+}
+
+
+

@@ -1,0 +1,143 @@
+﻿@model Impulse.Model.EventViewModel
+<div class="impulse-wrapper">
+    <div class="imp-dashboard">
+
+        <section class="imp-dash-content">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-9 col-sm-9 col-lg-9 imp-dash-cright">
+                        <div class="imp-dash-block">
+
+                            <div class="imp-dash-block-head">
+                                <h4>
+                                    <a class="imp-back"></a>@Model.Name
+                                    @if (Model.StatusId == 7)
+                                    {
+                                        <span class="label label-info">@Model.StatusName</span>
+                                    }
+                                    else if (Model.StatusId == 9)
+                                    {
+                                        <span class="label label-success">@Model.StatusName</span>
+
+                                    }
+                                    else if (Model.StatusId == 3)
+                                    {
+                                        <span class="label label-success">@Model.StatusName</span>
+
+                                    }
+                                    else
+                                    {
+
+                                        <span class="label label-warning">@Model.StatusName</span>
+                                    }
+                                </h4>
+                                <button class="imp-outline-button imp-button-small imp-button-cls pull-right">Cancel Request</button>
+                            </div>
+                            <div>@Model.CreatedUser.Team.TeamName</div>
+                            <div>@Model.CreatedUser.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</div>
+                            <div>@Model.CreatedUser.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value</div>
+                            <input type="hidden" id="hdnUID" value="@Model.CreatedUser.UserId" />
+                            <input type="hidden" id="hdnEId" value="@Model.EventId" />
+                            <input type="hidden" id="hdnUTID" value="@Model.CreatedUser.LookUpUserTypeId" />
+                            <input type="hidden" id="hdnVendorID" value="@Model.VendorId" />
+
+                            @foreach (var item in Model.EventDetails)
+                            {
+                                <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-full">
+                                    <ul class="imp-request-unlisted imp-event-details-card">
+                                        <li><i>What do you want to conduct?</i><strong>@item.EventType, @item.EventSubType</strong></li>
+                                        <li><i>Which location you prefer?</i><strong>@item.Location</strong></li>
+                                        <li><i>How many employees would be there?</i><strong>@item.EmployeeRange</strong></li>
+                                        <li><i>When are you expecting this event going to be happen?</i><strong>@item.ExpectedToConduct.Value.ToString("MMM dd yyyys")</strong></li>
+                                        <li><i>How frequently?</i><strong>@Model.ScheduleType</strong></li>
+                                        @if (item.VendorInvitation.StatusId == 1)
+                                        {
+                                            <span class="label-success">You quoted for Rs. @item.VendorInvitation.Amount /-</span>
+                                        }
+                                        @if (item.VendorInvitation.StatusId == 5)
+                                        {
+                                            <span class="label-success" style="color:white">You quoted for Rs. @item.VendorInvitation.Amount /-</span>
+                                            <br />
+                                            <span class="label-danger" style="color:white">Admin Approved and  Waiting for final client decision </span>
+                                        }
+                                        @if (item.VendorInvitation.StatusId == 7)
+                                        {
+                                            <button class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-right ant-btn-primary btnAccept" id="btnAccept">Accept</button>
+                                            <input type="hidden" id="hdnEDId" value="@item.EventDetailsId" />
+                                            <input type="hidden" id="hdnEId" value="@item.EventTypeId" />
+                                            <input type="hidden" id="hdnESId" value="@item.EventSubTypeId" />
+
+
+                                        }
+                                        @if (item.VendorInvitation.StatusId == 3)
+                                        {
+                                            <span class="label-success" style="color:white">You quoted for Rs. @item.VendorInvitation.Amount /-</span>
+                                            <br />
+                                            <span class="label-danger" style="color:white">You are selected for this event</span>
+                                        }
+
+                                    </ul>
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal fade bs-example-modal-sm" id="AcceptModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BS JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $(".imp-back").click(function () {
+            window.location.href = '/Dashboard/VendorIndex/';
+        });
+        $(".btnAccept").click(function () {
+            //$("#AssignModal").modal('show');
+            $('#loading-image').show();
+            var ajaxCallURL = '/Event/_getVendorAcceptForm';
+            $.ajax({
+                type: "GET",
+                url: ajaxCallURL,
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (data) {
+                    $('#loading-image').hide();
+                    $(".modal-content").html(data);
+                    $("#AcceptModal").modal('show');
+
+
+                },
+                error: function () {
+                    alert("Content load failed.");
+                }
+            });
+
+        });
+
+
+    });
+
+
+</script>  

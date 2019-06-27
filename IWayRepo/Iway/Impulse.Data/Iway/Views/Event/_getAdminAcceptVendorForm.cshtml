@@ -1,0 +1,54 @@
+﻿@model Impulse.Model.VendorInvitation
+<div class="modal-header">
+    <h4 class="modal-title" id="myLargeModalLabel"></h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+</div>
+<div class="modal-body">
+
+    <div class="imp-login-form">
+        <div class="left-100">
+            <input type="hidden" id="ACVVendorID" />
+            <input type="hidden" id="ACVEventDetailsID" />
+            <input type="number" class="form-control" placeholder="percentage" value="" id="txtPerc" style="margin: 5px;">
+            <input type="text" class="form-control" placeholder="description" value="" id="txtPerc" style="margin: 5px;">
+            <input type="text" class="form-control" placeholder="Total Amount" disabled="" value="" style="margin: 5px;">
+
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <input type="submit" id="btnAcceptVendeorForm" class="btn btn-success waves-effect text-left" value="Save" />
+    <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       
+        $("#btnAcceptVendeorForm").on("click", function () {
+           
+            $('#loading-image').show();
+            var options = {};
+            options.url = "SaveVendorAcceptForm";
+            options.type = "POST";
+            options.dataType = "json";
+            var _input = {};
+            _input.VendorId = $("#hdnVendorID").val();
+            _input.EventDetailsId = $("#hdnEDId").val();
+            _input.Amount = $("#txtVendorAmount").val();
+            _input.VendorComment = $("#txtVendorComment").val();
+            options.data = JSON.stringify(_input);
+            options.contentType = "application/json";
+            options.success = function (msg) {
+                $('#loading-image').hide();
+                location.reload();
+            };
+            $.ajax(options);
+
+
+        });
+
+    });
+</script>

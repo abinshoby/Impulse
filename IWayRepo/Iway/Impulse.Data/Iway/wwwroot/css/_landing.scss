@@ -1,0 +1,114 @@
+// Landing
+.imp-landing {
+    @extend %float-full;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    position: relative;
+    &:after {
+        background-color: var(--primary);
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 35%;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        right: 35%;
+        top: 0;
+        border-width: calc(100vh - 100px) 380px 0px 0;
+        border-style: solid;
+        border-color: transparent var(--primary) transparent transparent;
+    }
+}
+.imp-landing-header {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    top: 0;
+    padding: 20px 0;
+    z-index: 5;
+}
+.imp-landing-box{
+    @extend %float-full;
+    height: calc(100vh - 130px);
+    position: relative;
+    z-index: 1;
+    padding: 20px 0 0;
+    margin-bottom: 30px;
+    background-image: url(../images/landing.png);
+    background-position: top 15px center;
+    background-repeat: no-repeat;
+    max-width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.imp-ladning-footer {
+    @extend %float-full;
+    background-color: #e7e7e7;
+    padding: 32px 0;
+    position: relative;
+    z-index: 1;
+    &:after {
+        background-color: var(--primary-dark);
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: calc(35% - 100px);
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        right: calc(35% - 100px);
+        top: 0;
+        border-width: 0 480px 100px 0;
+        border-style: solid;
+        border-color: transparent var(--primary-dark) transparent transparent;
+    }
+    .imp-foot-left{
+        p{
+            @extend %float-full;
+            margin: 0;
+            color: #aaa;
+            font-size: 1.2rem;
+            padding: 10px 0;
+        }
+        position: relative;
+        z-index: 1;
+    }
+    .imp-foot-right{
+        .imp-social{
+            float: right;
+            margin: 8px 0;
+        }
+        position: relative;
+        z-index: 1;
+    }
+}
+.img-landing-act-align {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    max-width: 1250px;
+    text-align: right;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 0 15px;
+    h4{
+        color: #FFF;
+        float: right;
+        width: 100%;
+        max-width: 210px;
+        margin: 0 0 15px 0;
+        font-size: 2rem;
+        line-height: normal;
+        text-align: left;
+    }
+}

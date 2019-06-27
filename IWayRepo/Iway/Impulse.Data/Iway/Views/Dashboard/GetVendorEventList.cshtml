@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Impulse.Model.EventViewModel>
+@*<h5>REQUESTS<a href="javascript:void(0);" class="imp-view-all pull-right">View All</a></h5>*@
+@foreach (var item in Model)
+{<a href="~/Event/VendorEventDetails?id=@item.EventId&VId=@ViewBag.UserId">
+        <div class="imp-event-card">
+            <h4>@item.Name</h4>
+            <p>@item.Location</p>
+            <strong>@item.ExpectedToConduct.Value.ToString("MMM dd yyyys") </strong>
+            @if (item.StatusId == 7)
+            {
+                <span class="label label-info" style="width:100px">@item.StatusName</span>
+
+            }
+            else if (item.StatusId == 3 || item.StatusId == 9)
+            {
+                <span class="label label-success" style="width:100px">@item.StatusName</span>
+
+            }
+            else
+            {
+                <span class="label label-warning" style="width:100px">@item.StatusName</span>
+            }
+        </div>
+    </a>
+}
+

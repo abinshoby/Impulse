@@ -1,0 +1,7 @@
+﻿
+@{
+    ViewData["Title"] = "UserPending";
+}
+
+<h2>UserPending</h2>
+

@@ -1,0 +1,151 @@
+﻿@model Impulse.Model.User
+
+<div class="impulse-wrapper">
+    <div class="imp-dashboard">
+
+        <section class="imp-dash-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-cright">
+                        <div class="imp-dash-block">
+                            <div class="col-xs-8 col-sm-8 col-lg-8 col-md-offset-2 imp-dash-block-left">
+                                <div class="imp-dash-block-head">
+                                    <h3>@Model.Team.TeamName</h3>
+                                    <p>@Model.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                    <p>@Model.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                    <input type="hidden" id="hdnUserId" value="@Model.UserId" />
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-offset-2 imp-dash-block-left">
+                                <div class="left-100" id="griddiv">
+                                    <div id="overlay"><img src="~/images/spinner.gif" alt="Be patient..." style="display:none" /></div>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-lg-4 col-md-offset-1 imp-dash-block-left">
+                                <div class="left-100" id="ProfileCompletionDiv">
+                                    <div id="overlayProfile"><img src="~/images/spinner.gif" alt="Be patient..." style="display:none" /></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="dummyModal" role="dialog" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" class="close">&times;</button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Quick Brown Fox Jumps Over The Lazy Dog</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade bs-example-modal-lg" id="AssignModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <input type="button" value="test" id="testbtn"/>
+</div>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BS JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+@*<script src="~/js/VendorProfile.js"></script>*@
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        loadVendorProfile($("#hdnUserId").val());
+        loadGrid($("#hdnUserId").val());
+        $(document).on('click', '#testbtn', function () { 
+            $("#dummyModal").modal('show');
+
+        });
+        $(document).on('click', '#EditButton', function () {
+
+            $("#dummyModal").modal('show');
+            //$('#loading-image').show();
+            //var ajaxCallURL = '/User/_getVendorInterestDetails?VId=' + $(this).siblings("#hdnVID").val();
+            //$.ajax({
+            //    type: "GET",
+            //    url: ajaxCallURL,
+            //    contentType: "application/json; charset=utf-8",
+            //    datatype: "json",
+            //    success: function (data) {
+            //        $('#loading-image').hide();
+            //        $("#EditModal").modal('show');
+            //        $(".modal-content").html(data);
+
+            //    },
+            //    error: function () {
+            //        alert("Content load failed.");
+            //    }
+            //});
+
+        });
+    });
+    function loadVendorProfile(Id) {
+        $('#overlay img').show();
+        var ajaxCallURL = '/Dashboard/_addMoreVendorInterest?Uid=' + Id;
+        $.ajax({
+            type: "GET",
+            url: ajaxCallURL,
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                if (data != null) {
+                    $("#ProfileCompletionDiv").show();
+                    $("#ProfileCompletionDiv").html(data);
+                    $('#overlay img').hide();
+                }
+                else {
+                    $("#ProfileCompletionDiv").hide();
+                }
+
+            },
+            error: function () {
+
+            }
+        });
+    }
+    function loadGrid(Id) {
+
+        $('#overlayProfile img').show();
+        var ajaxCallURL = '/Dashboard/GetVendorInterest?Uid=' + Id;
+        $.ajax({
+            type: "GET",
+            url: ajaxCallURL,
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $("#griddiv").html(data);
+                $('#overlayProfile img').hide();
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>

@@ -1,0 +1,176 @@
+// Login
+.imp-login {
+    @extend %float-full;
+    min-height: 100vh;
+    background-color: var(--primary-mid);
+    position: relative;
+    background-image: url(../images/app-bg.jpg);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+.imp-login-table {
+    @extend %float-full;
+    height: 100vh;
+    padding: 30px 0;
+    display: table;
+}
+.imp-login-cell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    .container{
+        max-width: 991px;
+    }
+}
+.imp-login-flex {
+    display: -ms-flex;
+    display: -webkit-flex;
+    display: flex;
+    .imp-login-box {
+        
+        &.imp-login-left{
+            background-color: var(--primary);
+            @include border-radius(10px 0 0 10px);
+            position: relative;
+            width: 55%;
+        }
+        &.imp-login-right{
+            width: 45%;
+            background-color: #f4f4f4;
+            @include border-radius(0 10px 10px 0);
+            text-align: center;
+            position: relative;
+            &:before {
+                content: "";
+                position: absolute;
+                height: 100%;
+                right: 100%;
+                top: 0;
+                border-width: 464px 150px 0px 0;
+                border-style: solid;
+                border-color: transparent #f4f4f4 transparent transparent;
+            }
+        }
+    }
+}
+.imp-login-vert-flex {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 100%;
+    .imp-login-box-v {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        height: 50%;
+        color: #FFF;
+        &.imp-login-box-top{
+            padding: 35px 95px 15px 30px;
+            h3{
+                font-size: 2.3rem;
+                line-height: 2.7rem;
+                margin: 0 0 15px;
+                position: relative;
+                z-index: 2;
+            }
+            p{
+                font-size: 1.3rem;
+                line-height: normal;
+                margin: 0;
+                position: relative;
+                z-index: 2;
+            }
+        }
+        &.imp-login-box-bottom{
+            background-color: #fff;
+            @include border-radius(0 0 0 11px);
+        }
+    }
+    .imp-login-box-bottom{
+        position: relative;
+        img{
+            position: absolute;
+            max-height: 390px;
+            top: 0;
+            margin-top: -100px;
+            z-index: 1;
+            left: 0;
+        }
+    }
+}
+.imp-login-form-wrap {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 340px;
+    padding: 50px 0;
+}
+.imp-login-form {
+    @extend %float-full;
+    margin-top: 40px;
+    &>.left-100{
+        margin-bottom: 15px;
+        &.imp-login-social{
+            margin-bottom: 0;
+        }
+        .form-control{
+            height: 40px;
+            text-align: left;
+        }
+    }
+}
+.imp-login-btns{
+    margin-top: 10px;
+    .imp-solid-button {
+        padding-right: 35px !important;
+        &:after{
+            content: "";
+            @extend %sprite;
+            background-position: -21px -104px;
+            position: absolute;
+            width: 19px;
+            height: 12px;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+    }
+    a{
+        font-size: 1.1rem;
+        color: #5a5a5a;
+        margin: 7px 0;
+        @extend %transition;
+        &:hover{
+            color: var(--primary);
+        }
+    }
+}
+.imp-login-social{
+    border-top: 1px solid #dedede;
+    margin-top: 10px;
+    label{
+        @extend %float-full;
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: #5a5a5a;
+        margin: 13px 0;
+    }
+}
+.imp-login-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .container{
+        max-width: 991px;
+    }
+    p{
+        @extend %float-full;
+        margin: 0 0 15px 0;
+        color: #fff;
+        font-size: 1.2rem;
+    }
+}

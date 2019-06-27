@@ -1,0 +1,83 @@
+﻿@model Impulse.Model.Login
+@{
+    Layout = "_LayoutLogin";
+}
+<div class="impulse-wrapper">
+    <div class="imp-login">
+        <div class="imp-login-table">
+            <div class="imp-login-cell">
+                <div class="container">
+                    <div class="row">
+                        <div class="imp-login-flex">
+                            <div class="imp-login-box imp-login-left">
+                                <div class="imp-login-vert-flex">
+                                    <div class="imp-login-box-v imp-login-box-top">
+                                        <div class="imp-login-box-v imp-login-box-top">
+                                            <h3 style="color: rgb(255, 255, 255);">An Impulse Initiative</h3><p>iWAY is a platform that bridges tha gap between consumers and sports vendors to manage a sports event anywhere</p>
+                                        </div>
+                                    </div>
+                                    <div class="imp-login-box-v imp-login-box-bottom">
+
+                                        <img src="~/images/login.png" alt="Login" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="imp-login-box imp-login-right">
+                                <div class="imp-login-form-wrap">
+                                    <form method="post" id="SignInForm" asp-action="Login" >
+                                        <div class="left-100 text-center">
+                                            <img src="~/images/logo.png" alt="Impulse" />
+                                            @Html.ValidationMessage("successMsg")
+
+                                        </div>
+                                        <div class="imp-login-form">
+                                            <span id="WarningMessage" style="color:red;text-align:left"></span>
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="left-100">
+                                                <input asp-for="UserName" class="form-control" placeholder="User Name" value="" />
+                                                <span asp-validation-for="UserName" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="left-100">
+                                                <input asp-for="Password" class="form-control" placeholder="Password" type="password" value="" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100 imp-login-btns">
+                                                <a href="javascript:void(0);" class="pull-left">Forgot Password?</a>
+                                                <input type="submit" class="imp-solid-button imp-button-small pull-right" value="Login">
+                                                @Html.ValidationMessage("loginError")
+                                            </div>
+                                            <div class="left-100 imp-login-social">
+                                                <label class="left-100">Login with</label>
+                                                <ul class="imp-social imp-social-color">
+                                                    <li><a href="javascript:void(0);" class="imp-fb"></a></li>
+                                                    <li><a href="javascript:void(0);" class="imp-gp"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="imp-login-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <p>&copy; letsimpulse 2018. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/Login.js"></script>

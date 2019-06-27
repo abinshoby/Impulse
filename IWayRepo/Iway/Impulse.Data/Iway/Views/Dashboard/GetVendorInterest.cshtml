@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Impulse.Model.VendorInterest>
+
+@foreach (var item in Model)
+{
+    <div class="imp-event-card">
+        <h4>@item.EventType.EventTypeName</h4>
+        <p>@item.EventSubType.SubTypeName</p>
+        <strong>@item.Place </strong>
+        <span class="label label-info" style="width:100px">@item.YearOfExperience</span>
+        <span class="label label-info" id="EditButton" style="width:100px">Edit</span>
+        <input type="hidden" value="@item.VendorInterestId" id="hdnVID" />
+    </div>
+
+}
+
+
+
+

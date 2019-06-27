@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+@model Impulse.Model.SignUp
+<div class="impulse-wrapper">
+    <div class="imp-login">
+        <div class="imp-login-table">
+            <div class="imp-login-cell">
+                <div class="container">
+                    <div class="row">
+                        <div class="imp-login-flex">
+                            <div class="imp-login-box imp-login-left">
+                                <div class="imp-login-vert-flex">
+                                    <div class="imp-login-box-v imp-login-box-top">
+                                        <h3 style="color: rgb(255, 255, 255);">An Impulse Initiative</h3>
+                                        <p>iWAY is a platform that bridges tha gap between consumers and sports vendors to manage a sports event anywhere</p>
+                                    </div>
+                                    <div class="imp-login-box-v imp-login-box-bottom">
+
+                                        <img src="~/images/login.png" alt="Login" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="imp-login-box imp-login-right">
+                                <div class="imp-login-form-wrap">
+                                    <a>
+                                        <div class="left-100 text-center">
+                                            <img src="data:image/png;base64,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" alt="Impulse">
+                                            @Html.ValidationMessage("successMsg")
+
+                                        </div>
+                                    </a>
+                                    <div class="imp-login-form">
+                                        <span id="para"></span>
+                                        <form method="post" class="imp-login-form" id="SignUpFormVendor" asp-action="VendorSignUp">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="left-100">
+                                                <input asp-for="Company" class="form-control" placeholder="Company Name" value="" />
+                                                <span asp-validation-for="Company" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100">
+                                                <input asp-for="Email" class="form-control" placeholder="Email" value="" />
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100">
+                                                <input asp-for="Password" class="form-control" placeholder="Password" value="" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100">
+                                                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" value="" />
+                                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100">
+                                                <input asp-for="Phone" class="form-control" placeholder="Phone" value="" />
+                                                <span asp-validation-for="Phone" class="text-danger"></span>
+                                            </div>
+                                            <div class="left-100 imp-login-btns">
+                                                <a class="pull-left" href="~/User/Login">LOGIN</a>
+                                                <button type="submit" class="ant-btn imp-solid-button imp-button-small pull-right ant-btn-primary"><span>Register</span></button>
+                                                @*<a class="pull-left">LOGIN</a>
+                                                    <input type="submit" value="Create" class="ant-btn imp-solid-button imp-button-small pull-right ant-btn-primary" />*@
+                                                @*<button>sign</button>*@
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div class="imp-login-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <p>© letsimpulse 2018. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/Login.js"></script>
+
+
+

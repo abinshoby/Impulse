@@ -1,0 +1,53 @@
+// Request
+.imp-back{
+    float: left;
+    background-image: url(../images/back.png);
+    background-repeat: no-repeat;
+    margin-right: 8px;
+    height: 18px;
+    width: 30px;
+    cursor: pointer;
+    background-size: contain;
+}
+.imp-dash-block-head{
+    .label{
+        @include border-radius(15px);
+        padding: .3em .6em .3em;
+        font-weight: 400;
+        margin-left: 10px;
+        font-size: 1.1rem;
+        vertical-align: top;
+        margin-top: 0;
+        display: inline-block;
+    }
+}
+.imp-request-unlisted {
+    @extend %float-full;
+    padding: 0 ;
+    list-style: none;
+    margin: 0;
+    li{
+        @extend %float-full;
+        margin-bottom: 15px;
+        i{
+            float: left;
+            width: 40%;
+            padding-right: 20px;
+            font-style: normal;
+            color: #888888;
+            font-size: 1.3rem;
+        }
+        strong{
+            float: left;
+            width: 60%;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    }
+}
+.imp-dash-block-full {
+    padding: 0 5px;
+    .form-control{
+        height: 40px;
+    }
+}

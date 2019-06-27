@@ -1,0 +1,279 @@
+﻿@model Impulse.Model.EventViewModelPost
+<script src="https://rawgit.com/dbrekalo/attire/master/dist/js/build.min.js"></script>
+<link href="~/lib/dist/fastselect.min.css" rel="stylesheet" />
+<script src="~/lib/dist/fastselect.standalone.js"></script>
+
+<style>
+
+
+    .fstElement {
+        font-size: 1.2em;
+    }
+
+    .fstToggleBtn {
+        min-width: 16.5em;
+    }
+
+    .submitBtn {
+        display: none;
+    }
+
+    .fstMultipleMode {
+        display: block;
+    }
+
+        .fstMultipleMode .fstControls {
+            width: 100%;
+        }
+</style>
+
+
+<div class="imp-dash-block-head">
+    <h4><a class="imp-back"></a>New Request</h4>
+</div>
+<div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-full">
+    <div class="col-md-12">
+        <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-full">
+            <form method="post" class="" id="SaveEventForm" asp-action="SaveEvent">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="left-100">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="CorporateId" type="hidden" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pl0">
+                    <label>What do you want to conduct?</label>
+                    <select asp-for="EventTypeId" asp-items="@Model.ddlEventType" class="form-control"></select>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pr0" id="EventSubDiv">
+                    <label>Speicify your event</label>
+                    <div style="font-size:8px">
+                        <select asp-for="EventSubTypeList" asp-items="@Model.ddlEventSubType" multiple class="form-control multipleSelect"></select>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt25">
+                    <label>How many employees would be there?</label>
+                    <div class="imp-radio">
+                        <label class="control control-radio">
+                            0-100 @Html.RadioButton("EmployeeRange", "0-100")
+                            <div class="control_indicator"></div>
+                        </label>
+                        <label class="control control-radio">
+                            100-1000 @Html.RadioButton("EmployeeRange", "100-1000")
+                            <div class="control_indicator"></div>
+                        </label>
+                        <label class="control control-radio">
+                            1000-2000 @Html.RadioButton("EmployeeRange", "1000-2000")
+                            <div class="control_indicator"></div>
+                        </label>
+                        <label class="control control-radio">
+                            2000-5000 @Html.RadioButton("EmployeeRange", "2000-3000")
+                            <div class="control_indicator"></div>
+                        </label>
+                        <label class="control control-radio">
+                            5000-above  @Html.RadioButton("EmployeeRange", "5000-above")
+                            <div class="control_indicator"></div>
+                        </label>
+                        <span asp-validation-for="EmployeeRange" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pl0 imp-mt25">
+                    <label>Which location you prefer?</label>
+
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pr0 imp-mt25">
+                    <label>When are you expecting this event going to be happen?</label>
+                    <input asp-for="ExpectedToConduct" type="date" class="form-control" />
+                    <span asp-validation-for="ExpectedToConduct" class="text-danger"></span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt25">
+                    <label>How frequently?</label>
+
+                    <div class="imp-radio">
+                        @foreach (var item in Model.ScheduleTypeList)
+                        {
+                            <label class="control control-radio">
+                                @item.ScheduleTypeName @Html.RadioButtonFor(b => b.ScheduleType, item.ScheduleTypeId)
+                                <div class="control_indicator"></div>
+                            </label>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt50"><button type="submit" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-left ant-btn-primary"><span>Submit </span></button><button type="button" class="ant-btn imp-outline-button imp-button-small imp-button-cls imp-ml20 pull-left"><span>Cancel</span></button></div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/Event.js"></script>
+<script>
+    $('.multipleSelect').fastselect();
+    $(".imp-back").on("click", function () {
+        $("#NewRequestDiv").html("");
+        $("#NewRequestDiv").hide();
+        $("#indexDiv").show();
+
+    });
+    $('.control_indicator').click(function () {
+        //alert("");
+        //$(this).siblings().find($('input[type="radio"]')).not(':checked').prop("checked", true);
+        //$(this).siblings().prop("checked", true);
+    });
+    $("#EventTypeId").change(function () {
+        var value = $('option:selected', this).val();
+        var ajaxCallURL = '/Event/_getEventSubType?EventId=' + value;
+        $.ajax({
+            type: "GET",
+            url: ajaxCallURL,
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $("#EventSubDiv").html("");
+                $("#EventSubDiv").html(data);
+            },
+            error: function () {
+                alert("Content load failed.");
+            }
+        });
+    });
+    function loadGrid(Id) {
+
+    }
+</script>
+
+
+
+@*<div class="left-100"><label>Event Title</label><input type="text" class="form-control" placeholder="Event" value=""></div>
+    <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pl0">
+        <label>What do you want to conduct?</label>
+        <div class="form-control ant-select ant-select-enabled">
+            <div class="ant-select-selection
+                          ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                <div class="ant-select-selection__rendered">
+                    <div class="ant-select-selection-selected-value" title="" style="display: block; opacity: 1;"></div>
+                </div>
+                <span class="ant-select-arrow" unselectable="on" style="user-select: none;">
+                    <i class="anticon anticon-down ant-select-arrow-icon">
+                        <svg viewBox="64 64 896 896" class="" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                            <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+                        </svg>
+                    </i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pr0">
+        <label>Speicify your event</label>
+        <div class="form-control ant-select ant-select-enabled">
+            <div class="ant-select-selection
+                          ant-select-selection--multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false">
+                <div class="ant-select-selection__rendered">
+                    <div unselectable="on" class="ant-select-selection__placeholder" style="display: block; user-select: none;">Select a specifications</div>
+                    <ul>
+                        <li class="ant-select-search ant-select-search--inline">
+                            <div class="ant-select-search__field__wrap"><input autocomplete="off" class="ant-select-search__field" value=""><span class="ant-select-search__field__mirror">&nbsp;</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt25">
+        <label>How many employees would be there?</label>
+        <div class="imp-radio">
+            <label class="control control-radio">
+                0-100<input type="radio" name="radio" value="0-100">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                100-1000<input type="radio" name="radio" value="100-1000">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                1000-2000<input type="radio" name="radio" value="1000-2000">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                2000-5000<input type="radio" name="radio" value="2000-5000">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                5000-above<input type="radio" name="radio" value="5000-above">
+                <div class="control_indicator"></div>
+            </label>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pl0 imp-mt25">
+        <label>Which location you prefer?</label>
+        <div class="form-control ant-select ant-select-enabled">
+            <div class="ant-select-selection
+                          ant-select-selection--multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false">
+                <div class="ant-select-selection__rendered">
+                    <div unselectable="on" class="ant-select-selection__placeholder" style="display: block; user-select: none;">Enter location</div>
+                    <ul>
+                        <li class="ant-select-search ant-select-search--inline">
+                            <div class="ant-select-search__field__wrap"><input autocomplete="off" class="ant-select-search__field" value=""><span class="ant-select-search__field__mirror">&nbsp;</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 sol-lg-6 imp-pr0 imp-mt25">
+        <label>When are you expecting this event going to be happen?</label>
+        <span class="form-control ant-calendar-picker">
+            <div>
+                <input readonly="" placeholder="Select date" class="ant-calendar-picker-input ant-input" value="">
+                <i class="anticon anticon-calendar ant-calendar-picker-icon">
+                    <svg viewBox="64 64 896 896" class="" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                        <path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path>
+                    </svg>
+                </i>
+            </div>
+        </span>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt25">
+        <label>How frequently?</label>
+        <div class="imp-radio">
+            <label class="control control-radio">
+                Anually<input type="radio" name="radio1" value="5">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                Quaterly<input type="radio" name="radio1" value="4">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                Monthly<input type="radio" name="radio1" value="1">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                Weekly<input type="radio" name="radio1" value="2">
+                <div class="control_indicator"></div>
+            </label>
+            <label class="control control-radio">
+                Once<input type="radio" name="radio1" value="6">
+                <div class="control_indicator"></div>
+            </label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 sol-lg-12 imp-p0 imp-mt50"><button type="button" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-left ant-btn-primary"><span>Submit </span></button><button type="button" class="ant-btn imp-outline-button imp-button-small imp-button-cls imp-ml20 pull-left"><span>Cancel</span></button></div>*@
+
+

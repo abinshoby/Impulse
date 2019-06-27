@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Impulse.Model\Impulse.Model.csproj" />
+    <ProjectReference Include="..\Iway.Interface\Iway.Interface.csproj" />
+    <ProjectReference Include="..\Iway.Repository\Iway.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

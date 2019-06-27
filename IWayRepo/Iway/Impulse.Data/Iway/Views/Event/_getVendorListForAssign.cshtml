@@ -1,0 +1,337 @@
+﻿
+@model Impulse.Model.EventDetailsViewModel
+<style>
+    .form-control-special {
+        display: block;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+</style>
+
+<div class="modal-header">
+    <h4 class="modal-title" id="myLargeModalLabel">Recommended Vendor</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body" style="overflow-y:scroll;height:300px;">
+    @if (Model.UserListForAssign.Count > 0)
+    {
+        <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-left" style="margin-top:50px">
+            @foreach (var item in Model.UserListForAssign)
+            {
+                <div class="left-100">
+
+                    @if (item.VendorInvitation != null)
+                    {
+                        if (item.VendorInvitation.StatusId == 7)
+                        {
+
+                            <div class="imp-event-card col-md-6">
+                                <h4>
+                                    <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                    <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                    <input type="checkbox" class="ant-checkbox-input " value="" name="assign" disabled="disabled">
+                                    @item.Team.TeamName
+                                </h4>
+                                <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                <span class="label label-danger" style="width:100px">Assigned</span>
+                            </div>
+                        }
+                        else if (item.VendorInvitation.StatusId == 1)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-4">
+                                    <h4>
+                                        <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                        <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                        <input type="checkbox" class="ant-checkbox-input " value="" name="assign" disabled="disabled">
+                                        @item.Team.TeamName
+                                    </h4>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                </div>
+                                <div class="col-md-8" style="margin-bottom:10px">
+                                    <span>Proposed Amount: Rs.@item.VendorInvitation.Amount /-</span>
+                                    <span class="label label-danger" style="width:150px">Vendor Submitted</span>
+
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                    <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                    <input type="hidden" id="hdnAmount" value="@item.VendorInvitation.Amount" />
+                                    <input type="number" class="form-control-special col-md-3" value="" id="txtPerc">
+                                    <input type="text" class="form-control-special col-md-3" placeholder="description" id="txtDescription">
+                                    <input type="text" value="@item.VendorInvitation.Amount" class="form-control-special col-md-3" placeholder="Total Amount" id="txtAmount" disabled="disabled">
+                                    <button type="button" id="btnApproveVendor" class="btn btn-success waves-effect text-right col-md-3" onclick="" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-right">
+                                        <span>Approve</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        }
+                        else if (item.VendorInvitation.StatusId == 5)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-4">
+                                    <h4>
+                                        <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                        <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                        <input type="checkbox" class="ant-checkbox-input " value="" name="assign" disabled="disabled">
+                                        @item.Team.TeamName
+                                    </h4>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                </div>
+                                <div class="col-md-8" style="margin-bottom:10px">
+                                    <span>Vendor Amount: Rs.@item.VendorInvitation.Amount /-</span>
+                                    <span>Our Proposal: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                    <span class="label label-success" style="width:150px">Admin Approved</span>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        else if (item.VendorInvitation.StatusId == 9)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-4">
+                                    <h4>
+                                        @item.Team.TeamName
+                                    </h4>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                </div>
+                                <div class="col-md-8" style="margin-bottom:10px">
+                                    <span>Vendor Amount: Rs.@item.VendorInvitation.Amount /-</span>
+                                    <span>Our Proposal: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                    <span class="label label-success" style="width:150px">Admin Approved</span>
+                                    <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                    <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                    <button type="button" id="btnAdminConfirmed" style="margin-top:10px" onclick="" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-right">
+                                        <span>Confirmed</span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        }
+                        else if (item.VendorInvitation.StatusId == 3)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-4">
+                                    <h4>
+                                        @item.Team.TeamName
+                                    </h4>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                    <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                </div>
+                                <div class="col-md-8" style="margin-bottom:10px">
+                                    <span>Vendor Amount: Rs.@item.VendorInvitation.Amount /-</span>
+                                    <span>Our Proposal: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                    <span class="label label-success" style="width:150px">Client Approoved</span>
+                                    <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                    <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+
+                                </div>
+
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="imp-event-card col-md-6">
+                                <h4>
+                                    <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                    <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                    <input type="checkbox" class="ant-checkbox-input " value="" name="assign">
+                                    @item.Team.TeamName
+                                </h4>
+                                <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                                <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                                <span class="label label-info" style="width:100px"> Please Select</span>
+                            </div>
+
+                        }
+                    }
+                    else
+                    {
+                        <div class="imp-event-card col-md-6">
+                            <h4>
+                                <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                <input type="checkbox" class="ant-checkbox-input " value="" name="assign">
+                                @item.Team.TeamName
+                            </h4>
+                            <p>@item.Contact.Where(i => i.LookUpContactTypeId == 1).FirstOrDefault().Value</p>
+                            <p>@item.Contact.Where(i => i.LookUpContactTypeId == 2).FirstOrDefault().Value </p>
+                            <span class="label label-info" style="width:100px"> Please Select</span>
+                        </div>
+                    }
+                </div>
+
+
+            }
+
+        </div>
+    }
+    else
+    {
+
+        <h4>No Data Available</h4>
+
+    }
+</div>
+<div class="modal-footer">
+    <span id="error_message" class="label label-danger" style="float:left"></span>
+    <input type="submit" id="btnAssignSave" class="btn btn-success waves-effect text-left" value="Save" />
+    <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal" aria-hidden="true">Close</button>
+    @*<button type="button" class="btn btn-danger waves-effect text-left" id="btnTest" aria-hidden="true">Test</button>*@
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAssignSave").on("click", function () {
+            var arrayOfValues = [];
+            $.each($("input[name='assign']:checked"), function () {
+                arrayOfValues.push({
+                    UserId: $("input[name='assign']:checked").siblings("#hdnUId").val(),
+                    EventDetailsId: $("input[name='assign']:checked").siblings("#hdnEDd").val()
+                });
+
+
+            });
+            if (arrayOfValues.length != 0) {
+                $('#error_message').html("");
+                console.log(arrayOfValues);
+                $('#loading-image').show();
+                var options = {};
+                options.url = "AssignVendorToEvent";
+                options.type = "POST";
+                options.dataType = "json";
+                var _input = {};
+                _input.EventId = $("#hdnEId").val();
+                _input.StatusId = 7;
+                _input.VIDetails = arrayOfValues;
+                options.data = JSON.stringify(_input);
+                options.contentType = "application/json";
+                options.success = function (msg) {
+                    $('#loading-image').hide();
+                    location.reload();
+                };
+                $.ajax(options);
+            }
+            else {
+                $('#error_message').html("Please select one vendor");
+            }
+
+        });
+        $("#btnAdminConfirmed").on("click", function () {
+            var arrayOfValues = [];
+            arrayOfValues.push({
+                UserId: $(this).siblings("#hdnUId").val(),
+                EventDetailsId: $(this).siblings("#hdnEDd").val()
+            });
+
+            if (arrayOfValues.length != 0) {
+                $('#error_message').html("");
+                console.log(arrayOfValues);
+                $('#loading-image').show();
+                var options = {};
+                options.url = "AdminConfirmedEvent";
+                options.type = "POST";
+                options.dataType = "json";
+                var _input = {};
+                _input.EventId = $("#hdnEId").val();
+                _input.VIDetails = arrayOfValues;
+                options.data = JSON.stringify(_input);
+                options.contentType = "application/json";
+                options.success = function (msg) {
+                    $('#loading-image').hide();
+                    window.location.href = '/Event/Details?id=' + msg;
+                };
+                $.ajax(options);
+            }
+            else {
+                $('#error_message').html("Please select one vendor");
+            }
+
+        });
+        $("#txtPerc").keyup(function () {
+            var percentage = $(this).val();
+            var price = $("#hdnAmount").val();
+            var calcPerce = (price * percentage / 100);
+            var calcPrice = parseInt(price) + parseInt(calcPerce);
+            $("#txtAmount").val(calcPrice);
+        });
+        $("#btnApproveVendor").on("click", function () {
+            $('#loading-image').show();
+            var options = {};
+            options.url = "SaveAdminAcceptVendorForm";
+            options.type = "POST";
+            options.dataType = "json";
+            var _input = {};
+            _input.VendorId = $(this).siblings("#hdnUId").val();
+            _input.EventDetailsId = $(this).siblings("#hdnEDd").val();
+            _input.AdminAmount = $(this).siblings("#txtAmount").val();
+            _input.AdminComment = $(this).siblings("#txtDescription").val();
+            _input.AdminPerc = $(this).siblings("#txtPerc").val();
+
+            options.data = JSON.stringify(_input);
+            options.contentType = "application/json";
+            options.success = function (msg) {
+
+                location.reload();
+            };
+            $.ajax(options);
+
+        });
+    });
+
+
+    function ClickAdminVendorApproveSave(UId, EDId) {
+
+
+
+        $.ajax({
+            type: "GET",
+            url: ajaxCallURL,
+            data: {
+                VendorId: UId,
+                EventDetailsId: UId,
+                Amount: amount,
+                VendorName: name
+            },
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $('#loading-image').hide();
+                $("#AdminAcceptVendorModal").modal('show');
+                $(".modal-content-admin").html(data);
+
+
+            },
+            error: function () {
+                alert("Content load failed.");
+            }
+        });
+    }
+</script>  

@@ -1,0 +1,198 @@
+﻿
+@model Impulse.Model.EventDetailsViewModel
+
+
+<div class="modal-header">
+    <h4 class="modal-title" id="myLargeModalLabel">Recommended Vendor</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body" style="overflow-y:scroll;height:300px;">
+    @if (Model.UserListForAssign.Count > 0)
+    {
+        <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-left" style="margin-top:50px">
+            @foreach (var item in Model.UserListForAssign)
+            {
+                <div class="left-100">
+
+                    @if (item.VendorInvitation != null)
+                    {
+                        if (item.VendorInvitation.StatusId == 5)
+                        {
+                            <p> Are you sure want to accept the request? </p>
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            <input type="hidden" id="hdnUId" value="@item.UserId" />
+                                            <input type="hidden" id="hdnEDd" value="@Model.EventDetailsId" />
+                                            <input type="checkbox" class="ant-checkbox-input " value="" name="assign">
+                                            @item.Team.TeamName
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span>Proposal Amount: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        }
+                        else if (item.VendorInvitation.StatusId == 9)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            @item.Team.TeamName
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span>Proposal Amount: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                        <span class="label label-success" style="width:100px">Selected</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (item.VendorInvitation.StatusId == 3)
+                        {
+                            <div class="imp-event-card " style="padding:15px 15px 15px 15px">
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <h4>
+                                            @item.Team.TeamName
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span>Proposal Amount: Rs.@item.VendorInvitation.AdminAmount /-</span>
+                                        <span class="label label-success" style="width:100px">Approved</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+
+
+            }
+
+        </div>
+    }
+    else
+    {
+
+        <h4>No Data Available</h4>
+
+    }
+</div>
+<div class="modal-footer">
+    <span id="error_message" class="label label-danger" style="float:left"></span>
+    <input type="submit" id="btnAssignSave" class="btn btn-success waves-effect text-left" value="Save" />
+    <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#btnAssignSave").on("click", function () {
+            var arrayOfValues = [];
+            $.each($("input[name='assign']:checked"), function () {
+                arrayOfValues.push({
+                    UserId: $("input[name='assign']:checked").siblings("#hdnUId").val(),
+                    EventDetailsId: $("input[name='assign']:checked").siblings("#hdnEDd").val()
+                });
+
+
+            });
+            if (arrayOfValues.length != 0) {
+                $('#error_message').html("");
+                console.log(arrayOfValues);
+                $('#loading-image').show();
+                var options = {};
+                options.url = "CorporateApprovedVendor";
+                options.type = "POST";
+                options.dataType = "json";
+                var _input = {};
+                _input.EventId = $("#hdnEId").val();
+                _input.StatusId = 7;
+                _input.VIDetails = arrayOfValues;
+                options.data = JSON.stringify(_input);
+                options.contentType = "application/json";
+                options.success = function (msg) {
+                    $('#loading-image').hide();
+                    location.reload();
+                };
+                $.ajax(options);
+            }
+            else {
+                $('#error_message').html("Please select one vendor");
+            }
+
+        });
+        $("#txtPerc").keyup(function () {
+            var percentage = $(this).val();
+            var price = $("#hdnAmount").val();
+            var calcPerce = (price * percentage / 100);
+            var calcPrice = parseInt(price) + parseInt(calcPerce);
+            $("#txtAmount").val(calcPrice);
+        });
+        $("#btnApproveVendor").on("click", function () {
+            $('#loading-image').show();
+            var options = {};
+            options.url = "SaveAdminAcceptVendorForm";
+            options.type = "POST";
+            options.dataType = "json";
+            var _input = {};
+            _input.VendorId = $(this).siblings("#hdnUId").val();
+            _input.EventDetailsId = $(this).siblings("#hdnEDd").val();
+            _input.AdminAmount = $(this).siblings("#txtAmount").val();
+            _input.AdminComment = $(this).siblings("#txtDescription").val();
+            _input.AdminPerc = $(this).siblings("#txtPerc").val();
+
+            options.data = JSON.stringify(_input);
+            options.contentType = "application/json";
+            options.success = function (msg) {
+
+                location.reload();
+            };
+            $.ajax(options);
+
+        });
+    });
+
+
+    function ClickAdminVendorApproveSave(UId, EDId) {
+
+
+
+        $.ajax({
+            type: "GET",
+            url: ajaxCallURL,
+            data: {
+                VendorId: UId,
+                EventDetailsId: UId,
+                Amount: amount,
+                VendorName: name
+            },
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            success: function (data) {
+                $('#loading-image').hide();
+                $("#AdminAcceptVendorModal").modal('show');
+                $(".modal-content-admin").html(data);
+
+
+            },
+            error: function () {
+                alert("Content load failed.");
+            }
+        });
+    }
+</script>

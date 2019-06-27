@@ -1,0 +1,51 @@
+/* 
+Project : Impulse
+Author : Deepu Das
+Website : www.deepudas.com
+Date : 14 Oct, 2018
+*/
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+%float-full {
+    float: left;
+    width: 100%;
+}
+
+%font1{
+    font-family: 'Open Sans', sans-serif;
+}
+
+%transition{
+    -webkit-transition: all ease 0.2s;
+    -moz-transition: all ease 0.2s;
+    transition: all ease 0.2s;
+}
+
+%sprite{
+    background-image: url(../images/sprite.png);
+    background-repeat: no-repeat;
+}
+
+// Colors
+:root{
+    --primary:#0770b5;
+    --primary-mid:#0665a3;
+    --primary-dark:#005389;
+    --idle:#fac95f;
+    --success:#2fc982;
+    --progress:#35b5da;
+    --text:#666666;  
+}
+
+// Partials
+@import '_general.scss';
+@import '_login.scss';
+@import '_landing.scss';
+@import '_dashboard';
+@import '_request.scss';
+@import '_media.scss';

@@ -1,0 +1,5 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<input type="hidden" id="SessionUID" value="@HttpContextAccessor.HttpContext.Session.GetInt32("User")" />
+<input type="hidden" id="SessionUTID" value="@HttpContextAccessor.HttpContext.Session.GetInt32("UserType")" />

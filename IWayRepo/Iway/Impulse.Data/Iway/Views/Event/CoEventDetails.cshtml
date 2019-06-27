@@ -1,0 +1,170 @@
+﻿@model Impulse.Model.EventViewModel
+
+<style>
+    .imp-request-unlisted li i {
+        width: 50%;
+    }
+
+    .imp-request-unlisted li strong {
+        width: 50%;
+    }
+</style>
+<div class="impulse-wrapper">
+    <div class="imp-dashboard">
+
+        <section class="imp-dash-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-9 col-sm-9 col-lg-9 imp-dash-cright">
+                        <div class="imp-dash-block" id="">
+                            <div class="imp-dash-block-head">
+
+                                <h4>
+                                    <a class="imp-back"></a>@Model.Name
+                                    @if (Model.StatusId == 7)
+                                    {
+                                        <span class="label label-info">@Model.StatusName</span>
+                                    }
+                                    else if (Model.StatusId == 9)
+                                    {
+                                        <span class="label label-success">@Model.StatusName</span>
+
+                                    }
+                                    else if (Model.StatusId == 3)
+                                    {
+                                        <span class="label label-success">@Model.StatusName</span>
+
+                                    }
+                                    else
+                                    {
+
+                                        <span class="label label-warning">@Model.StatusName</span>
+                                    }
+
+
+                                </h4>
+                                <button class="imp-outline-button imp-button-small imp-button-cls pull-right">Cancel Request</button>
+                                <input type="hidden" value="@Model.CorporateId" id="hdnCorporateId">
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-left">
+                                <div class="left-100" id="">
+                                    @if (Model.EventDetails != null)
+                                    {
+                                        foreach (var item in Model.EventDetails)
+                                        {
+                                            <div class="col-xs-12 col-sm-12 col-lg-12 imp-dash-block-full">
+                                                <ul class="imp-request-unlisted imp-event-details-card">
+                                                    <li><i>What do you want to conduct?</i><strong>@item.EventType, @item.EventSubType</strong></li>
+                                                    <li><i>Which location you prefer?</i><strong>@item.Location</strong></li>
+                                                    <li><i>How many employees would be there?</i><strong>@item.EmployeeRange</strong></li>
+                                                    <li><i>When are you expecting this event going to be happen?</i><strong>@item.ExpectedToConduct.Value.ToString("MMM dd yyyys")</strong></li>
+                                                    <li><i>How frequently?</i><strong>@Model.ScheduleType</strong></li>
+                                                    @if (item.Assignedser != null)
+                                                    {
+                                                        foreach (var item1 in item.Assignedser)
+                                                        {
+                                                            if (item1 != null)
+                                                            {
+                                                                if (item1.VendorInvitation.StatusId == 5)
+                                                                {
+                                                                    <input type="hidden" id="hdnEDId" value="@item.EventDetailsId" />
+                                                                    <input type="hidden" id="hdnEId" value="@item.EventTypeId" />
+                                                                    <input type="hidden" id="hdnESId" value="@item.EventSubTypeId" />
+                                                                    <button type="button" id="btnCorpAccept" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-right ant-btn-primary btnCorpAccept"><span>Accept</span></button>
+                                                                }
+                                                                if (item1.VendorInvitation.StatusId == 9 || item1.VendorInvitation.StatusId == 3)
+                                                                {
+                                                                    <input type="hidden" id="hdnEDId" value="@item.EventDetailsId" />
+                                                                    <input type="hidden" id="hdnEId" value="@item.EventTypeId" />
+                                                                    <input type="hidden" id="hdnESId" value="@item.EventSubTypeId" />
+                                                                    <button type="button" id="btnCorpDetails" class="ant-btn imp-solid-button imp-button-small imp-button-arr pull-right ant-btn-primary btnCorpDetails"><span>Details</span></button>
+
+                                                                }
+
+                                                            }
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" id="CoAcceptModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BS JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".imp-back").click(function () {
+            window.location.href = '/Dashboard/CorporateIndex/';
+        });
+        $(".btnCorpAccept").click(function () {
+
+            //$("#AssignModal").modal('show');
+            $('#loading-image').show();
+            var ajaxCallURL = '/Event/_getVendorListForCorporate?EID=' + $(this).siblings("#hdnEId").val() + '&ESId=' + $(this).siblings("#hdnESId").val() + '&EventDetailsId=' + $(this).siblings("#hdnEDId").val();
+            $.ajax({
+                type: "GET",
+                url: ajaxCallURL,
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (data) {
+                    $('#loading-image').hide();
+                    $(".modal-content").html(data);
+                    $("#CoAcceptModal").modal('show');
+
+                },
+                error: function () {
+                    alert("Content load failed.");
+                }
+            });
+
+        });
+        $(".btnCorpDetails").click(function () {
+
+            //$("#AssignModal").modal('show');
+            $('#loading-image').show();
+            var ajaxCallURL = '/Event/_getVendorListForCorporate?EID=' + $(this).siblings("#hdnEId").val() + '&ESId=' + $(this).siblings("#hdnESId").val() + '&EventDetailsId=' + $(this).siblings("#hdnEDId").val();
+            $.ajax({
+                type: "GET",
+                url: ajaxCallURL,
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (data) {
+                    $('#loading-image').hide();
+                    $(".modal-content").html(data);
+                    $("#CoAcceptModal").modal('show');
+
+                },
+                error: function () {
+                    alert("Content load failed.");
+                }
+            });
+
+        });
+    });
+</script>
+

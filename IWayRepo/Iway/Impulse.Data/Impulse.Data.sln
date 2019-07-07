@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impulse.EF", "Impulse.EF\Im
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Impulse.Model", "Impulse.Model\Impulse.Model.csproj", "{5A2B3E56-A89B-4C91-A70B-0ABEBD335FDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iway", "Iway\Iway.csproj", "{36C7B44C-0B31-426D-8CA4-2302827175F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iway", "Iway\Iway.csproj", "{36C7B44C-0B31-426D-8CA4-2302827175F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iway.Repository", "Iway.Repository\Iway.Repository.csproj", "{13F59049-6C0F-46FB-B0D1-39A3B287F7D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iway.Repository", "Iway.Repository\Iway.Repository.csproj", "{13F59049-6C0F-46FB-B0D1-39A3B287F7D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iway.Interface", "Iway.Interface\Iway.Interface.csproj", "{247D9EC1-82E3-4998-9504-580D7E0DC9C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iway.Interface", "Iway.Interface\Iway.Interface.csproj", "{247D9EC1-82E3-4998-9504-580D7E0DC9C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

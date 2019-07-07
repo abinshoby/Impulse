@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>fbdc7ecd-4043-42a1-b7e5-9a8ed290ba96</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,12 +14,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Impulse.Model\Impulse.Model.csproj" />
     <ProjectReference Include="..\Iway.Interface\Iway.Interface.csproj" />
     <ProjectReference Include="..\Iway.Repository\Iway.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\PDF_Data\" />
   </ItemGroup>
 
 </Project>

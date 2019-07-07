@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Impulse.Model\Impulse.Model.csproj" />
   </ItemGroup>
 

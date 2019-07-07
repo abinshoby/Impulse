@@ -1,0 +1,12 @@
+﻿@{Layout = "_LayoutLogin";
+	@model Impulse.Model.PDF_
+}
+
+
+<form method="post" asp-action="Confirm_PDF_details" asp-controller="Home">
+	Name:   <input id="name" name="Name" type="text" />
+	Address:<input id="address" name="Address" type="text" />
+	Amount: Rs. <input id="amt"name="Amount" type="number" />
+	<input id="obtain" type="submit" value="submit" />
+</form>
+

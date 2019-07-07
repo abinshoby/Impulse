@@ -20,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using Rotativa.AspNetCore;
 
 namespace Iway
 {
@@ -30,13 +31,17 @@ namespace Iway
             Configuration = configuration;
         }
 
+        
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+           //.AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(o => o.LoginPath = new PathString("/account/login"));
+            .AddCookie(o => o.LoginPath = new PathString("/User/Login"));//account/login
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
@@ -68,11 +73,22 @@ namespace Iway
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            
+            
+
             services.AddSingleton<RequestHandler>();
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
@@ -96,7 +112,7 @@ namespace Iway
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+           
             app.UseSession();
 
             app.UseStatusCodePagesWithReExecute("/Error", "?status={0}");
@@ -107,8 +123,11 @@ namespace Iway
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
 
+                
+                   
+            });
+            RotativaConfiguration.Setup(env);
         }
 
 

@@ -1,30 +1,175 @@
 ﻿@model IEnumerable<Impulse.Model.EventViewModel>
+
 @*<h5>REQUESTS<a href="javascript:void(0);" class="imp-view-all pull-right">View All</a></h5>*@
-@foreach (var item in Model)
-{
 
-    <div class="imp-event-card" onclick="EventClick(@item.EventId)">
-        <h4>@item.Name</h4>
-        <p>@item.Location</p>
-        <strong>@item.ExpectedToConduct.Value.ToString("MMM dd yyyys") </strong>
-        @if (item.StatusName == "InProgress")
-        {
-            <span class="label label-info" style="width:100px">@item.StatusName</span>
+@{
+	int itemsPerList = 3;
+	int j = 0;
+	int map = 0;
+	
+	
+	List<string> cards = new List<string>();
+	List<Impulse.Model.EventViewModel> cards2 = new List<Impulse.Model.EventViewModel>();
+	Dictionary<long,int>dic= new Dictionary<long, int>();
+	string c = "";
+	
+	foreach (var item in Model)
+	{
+		j++;
+		c += "<div  class='imp-event-card' id= 'item"+item.EventId+"'onclick='EventClick(" + item.EventId + ")'> <h4>" + item.Name + "</h4>" +
 
-        }
-        else if (item.StatusName == "Confirmed" || item.StatusName == "Scheduled")
-        {
-            <span class="label label-success" style="width:100px">@item.StatusName</span>
+		"<p>" + item.Location + "</p><strong>" + item.ExpectedToConduct.Value.ToString("MMM dd yyyys") + "</strong>";
+		if (item.StatusName == "InProgress")
+		{
 
-        }
-        else
-        {
-            <span class="label label-warning" style="width:100px">@item.StatusName</span>
-        }
+			c += "<span class='label label-info' style='width:100px'>" + item.StatusName + "</span>";
 
-    </div>
+		}
+		else if (item.StatusName == "Confirmed" || item.StatusName == "Scheduled")
+		{
+			c += "<span class='label label-success' style='width:100px'>" + item.StatusName + "</span>";
+
+		}
+		else
+		{
+			c += "<span class='label label-warning' style='width:100px'>" + item.StatusName + "</span>";
+		}
+		c += "</div>";
+		cards2.Add(item);
+		dic[item.EventId] = map;
+		if (j % itemsPerList == 0)
+		{
+
+			cards.Add(c);
+			map++;
+			c = "";
+		}
+
+
+
+		//last = item;
+
+	}
+
+	if (c != "")
+	{
+		//dic[last.EventId] = map;
+		cards.Add(c);
+		map++;
+	}
+	cards2.OrderBy(o => o.Name);
+	
+
+
 
 }
+<div class="framecontainer">
+	<input  id="search"name="search" autocomplete="on" type="search" placeholder="Search By Event Name"/>
+	<input  id="searchbtn"type="button" value="search"/>
+	<div id="frame">
+
+	</div>
+</div>
+	@*@foreach (var item in Model)
+		{
+			i++;
+			string disp = "inline-block";
+			if (i % 3 == 0)
+			{
+				//disp = "none";
+			}
 
 
+			<div id="item-@i" class="imp-event-card" style="display:@disp;" onclick="EventClick(@item.EventId)">
+				<h4>@item.Name</h4>
+				<p>@item.Location</p>
+				<strong>@item.ExpectedToConduct.Value.ToString("MMM dd yyyys") </strong>
+				@if (item.StatusName == "InProgress")
+				{
+
+					<span class="label label-info" style="width:100px">@item.StatusName</span>
+
+				}
+				else if (item.StatusName == "Confirmed" || item.StatusName == "Scheduled")
+				{
+					<span class="label label-success" style="width:100px">@item.StatusName</span>
+
+				}
+				else
+				{
+					<span class="label label-warning" style="width:100px">@item.StatusName</span>
+				}
+
+			</div>
+			@if (i == 1)
+			{
+				<span class="label label-warning" style="width:100px">stop here</span>
+			}
+
+		}*@
+
+	
+		<script>
+			var cards =@Html.Raw(Json.Serialize(cards));
+			var cards2 =@Html.Raw(Json.Serialize(cards2));
+			var dic =@Html.Raw(Json.Serialize(dic));
+			var ev_names = [];
+			for (var item in cards2) {
+				ev_names.push(cards2[item]['name']);
+			}
+
+
+			
+			i = -1;
+
+
+			
+			function next_page() {
+				if (i != cards.length - 1) {
+					document.getElementById("frame").innerHTML = cards[++i];
+					document.getElementsByClassName("showing")[0].innerHTML = "showing List:" + (i + 1) + "/" + cards.length;
+				}
+				
+			}
+			next_page();
+			$(document).ready(function () {
+				$("#search").autocomplete({
+					source: ev_names
+				});
+				$('#next').click(function () { next_page(); });
+				$("#prev").click(function () {
+					if (i != 0) {
+						document.getElementById("frame").innerHTML = cards[--i];
+						document.getElementsByClassName("showing")[0].innerHTML = "showing List:" + (i + 1) + "/" + cards.length;
+					}
+				});
+				
+				$("#searchbtn").click(function () {
+
+					
+					
+
+					var id = -1;
+					for(var item in cards2){
+						if (cards2[item]['name'] == $("#search").val().toString()) {
+							id = cards2[item]['eventId'];
+							break;
+						}
+					}
+
+					if (id != undefined && id!=-1) {
+						document.getElementById("frame").innerHTML = cards[dic[id]];
+						document.getElementsByClassName("showing")[0].innerHTML = "showing List:" + (dic[id] + 1) + "/" + cards.length;
+						i = dic[id];
+					}
+
+				});
+				
+
+			});
+		</script>
+		<a style="margin-left:160px;" id="prev">prev</a><span class="showing" style="display:inline-block;margin-left:170;"></span> <a id="next" style="margin-left:180px;">next</a>
+		<span>Total items:@j</span>
+
+	
 
